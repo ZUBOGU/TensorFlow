@@ -9,6 +9,7 @@ Tensors flowing between Operations => “TensorFlow”
 
 ### Training a Model with TensorFlow
 |Concept|Implementation|
+|---|---|
 |Prepared Data|Generated house size and price data|
 |Inference|Price = (sizeFactor * size) + priceOffset|
 |Loss Measurement|Mean Square Error|
@@ -81,6 +82,7 @@ Output Layer
 
 ### Training a Neural Network with TensorFlow
 |Concept|Implementation|
+|---|---|
 |Prepared Data|MNIST Data|
 |Inference|(x * weight + bias) -> activation|
 |Loss Measurement|Cross Entropy|
@@ -96,8 +98,7 @@ loss is cross entropy
 ```
 cross_entropy = tf.reduce_mean(
                 tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y))
-                ```
-
+```
 
 ## Syntax Notes
 ### tensor placeholder
