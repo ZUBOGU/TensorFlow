@@ -1,5 +1,19 @@
 # TensorFlow
-## Note For TensorFlow
+The learning notes for tensorflow and some sample projects.
+## Notes For TensorFlow
+An interface for expressing machine learning algorithms and an implementation for executing such algorithms.
+
+A framework for creating ensemble algorithms for today’s most challenging problems.
+
+Tensors flowing between Operations => “TensorFlow”
+
+### Training a Model with TensorFlow
+|Concept|Implementation|
+|Prepared Data|Generated house size and price data|
+|Inference|Price = (sizeFactor * size) + priceOffset|
+|Loss Measurement|Mean Square Error|
+|Optimizer to Minimize Loss|Gradient Descent Optimizer|
+
 ### Tensor
 An n-dimensional array or list used in Tensor to represent all data.
 
@@ -42,33 +56,104 @@ dtype – return data type
 cast – change data type
 ```
 
-## Syntax Note
-tensoflow operator or tensor (Placeholder)
+### Neural Networks in TensorFlow
+#### Linear Regression Example Revisited
+Gradient Descent Optimizer. Loss Function - Mean squared error
 ```
-tf.placeholder("float", name="house_size")
-tf.placeholder("float", name="price")
+tf_price_pred = tf.add(tf.multiply(tf_size_factor,tf_house_size), tf_price_offset)
+tf_cost = tf.reduce_sum(tf.pow(tf_price_pred-tf_price, 2))/(2*num_train_samples) // need this 2
+optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(tf_cost)
 ```
-tensor varibales
+
+#### Neuron Architecture
 ```
-tf.Variable(np.random.randn(), name="size_factor")
-tf.Variable(np.random.randn(), name="price_offset")
+(I1 * W1) + (I2 * W2) + … + (In * Wn) + Bias
+Act((I * W) + Bias)
 ```
-"+" and "*" operators.
+Inputs are from data. Weights are what we training on. Active function process the sum and produce the final Output in a neuron.
+
+Neural Network Layers
+```
+Input Layer
+Hidden Layer(s) 
+Output Layer
+```
+
+### Training a Neural Network with TensorFlow
+|Concept|Implementation|
+|Prepared Data|MNIST Data|
+|Inference|(x * weight + bias) -> activation|
+|Loss Measurement|Cross Entropy|
+|Optimizer to Minimize Loss|Gradient Descent Optimizer|
+
+#### Handwritten digit recognition
+MNIST dataset Classic testing set
+```
+yann.lecun.com/exdb/mnist
+```
+
+loss is cross entropy
+```
+cross_entropy = tf.reduce_mean(
+                tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y))
+                ```
+
+
+## Syntax Notes
+### tensor placeholder
+```
+tf.placeholder(
+    dtype,
+    shape=None,
+    name=None
+)
+tf.placeholder(tf.float32, shape=[None, 784])
+```
+### tensor varibales
+```
+tf.Variable(<initial-value>, name=<optional-name>)
+tf.Variable(tf.zeros([784, 10]))
+```
+
+### Operators
 ```
 tf.add()
 tf.multiply()
 tf.pow()
+tf.matmul()
+tf.equal()
 ```
-Gradient Descent Optimizer. Loss Function - Mean squared error
+
+### Module: tf.nn 
+Defined in ```tensorflow/python/ops/nn.py.``` Neural network support.
+
+#### softmax
+Computes softmax activations. ```softmax = tf.exp(logits) / tf.reduce_sum(tf.exp(logits), axis)```
 ```
-tf_cost = tf.reduce_sum(tf.pow(tf_price_pred-tf_price, 2))/(2*num_train_samples) // need this 2
-tf_cost = tf.reduce_mean(tf.square(tf_price_pred-tf_price))
-learning_rate = 0.1
-optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(tf_cost)
+tf.nn.softmax(
+    logits,
+    axis=None,
+    name=None,
+    dim=None
+)
+logits: A non-empty Tensor. Must be one of the following types: half, float32, float64.
+tf.nn.softmax(tf.matmul(x, W) + b)
 ```
+
 Run the tensor
+```
+run(
+    fetches,
+    feed_dict=None,
+    options=None,
+    run_metadata=None
+)
+
+```
 ```
 init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
+sess.run(optimizer, feed_dict={x: batch_xs, y_: batch_ys})
+sess.close()
 ```
