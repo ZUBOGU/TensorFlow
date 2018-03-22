@@ -1,6 +1,6 @@
 # TensorFlow
 ## Note For TensorFlow
-###Tensor
+### Tensor
 An n-dimensional array or list used in Tensor to represent all data.
 
 Defined by the properties, Rank, Shape, and Type.
