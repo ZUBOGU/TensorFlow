@@ -57,9 +57,66 @@ dtype – return data type
 cast – change data type
 ```
 
-### Name and Name Scope
+## Debugging and Monitoring
+```
+Run in session context
+- Python debugger limited usefulness
+Session locality varies
+- Local CPU
+- Local GPU
+- Remote System (GPU/CPU) 
+- Remote Cluster
+```
+### Machine Learning Issues
+```
+Complex models 
+Data and trends 
+Long run times
+```
+
+### TensorFlow Features and Tools
+#### Name 
+```
+tf_house_size = tf.placeholder("float", name="house_size")
+tf_size_factor = tf.Variable(np.random.randn(), name="size_factor")
+```
+#### Name Scope
+```
+with tf.name_scope("MNIST_Input"):
+```
+
+### Summary methods
+```
+tf.summary.scalar()
+tf.summary.histogram()
+tf.summary.merge_all()
+tbWriter = tf.summary.FileWriter(logPath, sess.graph)
+tbWriter.add_summary(summary,i)
+```
 
 ### TensorBoard
+Syntax to run tenserboard with log file
+```
+tensorboard --logdir=log_simple_graph # shell command
+Go to specify url, i.e.
+http://localhost:6006/
+```
+
+```
+Visualizing Learning 
+Visualize Computation Graph 
+Monitor performance
+Shows internal operations
+Better Name Scope, better visualization
+```
+Adding Support for TensorBoard
+```
+Define log file location
+Define names and name scopes 
+Add Summary methods
+Train
+Run TensorBoard
+```
 
 ### Neural Networks in TensorFlow
 #### Linear Regression Example Revisited
@@ -180,7 +237,6 @@ run(
     options=None,
     run_metadata=None
 )
-
 ```
 ```
 init = tf.global_variables_initializer()
