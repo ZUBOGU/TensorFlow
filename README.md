@@ -180,13 +180,59 @@ Insert Convolution Network layers
 - Learns features of image
 ```
 
-MINIST Inputs => Conv1 => Pool1 => Conv2 => Pool2 => Fully Connected => Output Neuron
+MNIST Inputs => Conv1 => Pool1 => Conv2 => Pool2 => Fully Connected => Output Neuron
 
 Back Propagation => "BackProp",  and Forward Propagation
 
 Could have overfitting: good at train data, bad at test data or real world.
 
 By put bais on Fully Connected, reduce overfitting
+
+## Inception v3
+DeepMNIST  Only works with MNIST images.  Inception v3 is a model for image recognition.
+```
+Provided with TensorFlow
+Superhuman image classification
+- Human – 5.1% error
+- Inception v3 - 3.46% error
+Training takes a long time
+- 2 weeks
+- 8 NVIDIA K40 processors (GPUs designed for computation)
+Trained on ImageNet dataset
+```
+
+### Transfer Learning
+Check website
+```
+https://www.tensorflow.org/tutorials/image_retraining
+```
+Follow the instruction to re-training images.
+
+Steps:
+```
+Get our data
+Load Inception
+Retrain next to last (Bottleneck) layer 
+Replace last layer to output of our classes 
+Evaluate the retrained model
+```
+
+## TensorFlowwith Add-ons
+### Keras
+```
+Library on top of TensorFlow or Theano
+Focused on Neural Networks
+Soon part of TensorFlow
+Expanding support to other frameworks
+```
+Using Keras
+```
+Define Model 
+Add Layers
+Compile 
+Train 
+Evaluate
+```
 
 ## Syntax Notes
 ### tensor placeholder
