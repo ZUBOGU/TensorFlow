@@ -57,6 +57,10 @@ dtype – return data type
 cast – change data type
 ```
 
+### Name and Name Scope
+
+### TensorBoard
+
 ### Neural Networks in TensorFlow
 #### Linear Regression Example Revisited
 Gradient Descent Optimizer. Loss Function - Mean squared error
@@ -99,6 +103,33 @@ loss is cross entropy
 cross_entropy = tf.reduce_mean(
                 tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y))
 ```
+
+### Improving Performance by Going Deep
+Deeper networks can learn more details. Simple to do with TensorFlow
+
+|Concept|Implementation|
+|---|---|
+|Prepared Data|MNIST data and reshape as required|
+|Inference|Matmul(Weight, x) + bias for entire NN|
+|Loss Measurement|Cross Entropy|
+|Optimizer to Minimize Loss|Gradient Descent Optimizer|
+
+#### Deepening the Network
+```
+Consider data
+- We have images!
+Insert Convolution Network layers
+- Inspects subsets of image
+- Learns features of image
+```
+
+MINIST Inputs => Conv1 => Pool1 => Conv2 => Pool2 => Fully Connected => Output Neuron
+
+Back Propagation => "BackProp",  and Forward Propagation
+
+Could have overfitting: good at train data, bad at test data or real world.
+
+By put bais on Fully Connected, reduce overfitting
 
 ## Syntax Notes
 ### tensor placeholder
