@@ -227,11 +227,48 @@ Expanding support to other frameworks
 ```
 Using Keras
 ```
-Define Model 
+Define Model // Framework, sequence / complex stricture 
 Add Layers
-Compile 
+Compile // Tensorflow graph is created
 Train 
 Evaluate
+```
+
+### TFLearn
+```
+Only supports TensorFlow
+Part of TF Distribution
+Uses Tensors
+Callable from TensorFlow
+Support for TensorBoard
+```
+Using TLLearn
+```
+Define Layers
+Load Model  // deep neural networks and generative neural networks
+Train
+Evaluate
+```
+
+### Compare
+Keras
+```
+Supports multiple backend frameworks 
+Modular approach
+Data in numpy or python types
+```
+TFLearn
+```
+Specific to TensorFlow
+Adds classes on top of TensorFlow 
+Uses tensors for data
+TFLearn functions can be called from TensorFlow
+```
+Both
+```
+Reduce coding
+Reduced coding = Reduced errors
+Focused on Neural Networks
 ```
 
 ## Syntax Notes
